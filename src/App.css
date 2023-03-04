@@ -15,17 +15,35 @@ body{
   font-size: 20px;
 }
 
+
+.container{
+  padding: 20px 20%;
+}
+
 .block{
   background-color: #fefefe;
   border: 1px solid rgb(168, 168, 168);
   padding: 15px;
   border-radius: 20px;
   margin: 20px;
-  cursor: pointer;
+  cursor: pointer; 
+  transition: all 0.3s ease;
+}
+
+.block:hover{
+  transform: scale(1.1);
   
 }
 
 .active{
   background: rgb(0, 0, 0, 0.1);
+
 }
 
+.grid{
+  display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(1, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px; 
+}

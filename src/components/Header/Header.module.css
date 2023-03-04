@@ -16,6 +16,10 @@ padding: 20px 15%;
     justify-items: center;
 }
 
+.container{
+    margin: 20px 20%;
+}
+
 .icon{
     font-size: 20px;
     margin: 0 10px;

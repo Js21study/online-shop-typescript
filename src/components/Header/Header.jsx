@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import Categories from '../Categories/Categories'
 import styles from './Header.module.css'
 import { FcLikePlaceholder } from "react-icons/fc"
@@ -6,13 +6,34 @@ import { RxPerson } from "react-icons/rx";
 import logo from '../../assets/img/logo.svg'
 import { RiPhoneFill } from "react-icons/ri";
 import { RiShoppingBagLine } from "react-icons/ri";
+import { useDispatch, useSelector } from 'react-redux';
+import debounce from 'lodash.debounce'
+import { filter, setSearch } from '../../redux/slices/filterSlice';
 
 
 
 
 const Header = () => {
-  
-  const List = ['ALL', 'ASSESORIES', 'MAKEUP', 'HAIR', 'BODY', 'PARFUMS', 'SALE']
+  const dispatch = useDispatch()
+
+  const [valueOrdinary, setValueOrdinary] = useState('')
+  const List = ['ALL', 'ASSESORIES', 'PARFUMS', 'HAIR']
+
+  const updateSearchValue = useCallback(
+    debounce((str) => {
+       dispatch(setSearch(str))
+  }, 
+  500), 
+  [],
+  )
+
+  const onChangeInput = (e) => {
+    setValueOrdinary(e.target.value)
+    updateSearchValue(e.target.value)
+  }
+  const {search} = useSelector( filter )
+
+  console.log(search);
 
   return (
     <div className={styles.header}>
@@ -28,7 +49,7 @@ const Header = () => {
       <div className={styles.flex}>
         <div>
   
-          <input type="text" className={styles.input} />
+          <input value={valueOrdinary} type="text" onChange={onChangeInput} className={styles.input} />
           
         </div>
         
@@ -47,9 +68,12 @@ const Header = () => {
         </div>
       </div>
 
-
+      <div className={styles.container}>
+      
       <div className={styles.flex}>
-        {List.map((el, i) => <Categories key={el} category={el}/>)}
+        {List.map((el, i) => <Categories key={el} category={el} index={i}/>)}
+      </div>
+
       </div>
     </div>
   )
