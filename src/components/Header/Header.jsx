@@ -33,7 +33,7 @@ const Header = () => {
   }
   const {search} = useSelector( filter )
 
-  console.log(search);
+
 
   return (
     <div className={styles.header}>

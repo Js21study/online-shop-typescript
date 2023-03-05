@@ -17,6 +17,7 @@ function App() {
   const categoryIn = useSelector(categoryIndexSelect)
   const typeIn = useSelector(typeIndexSelect)
   const {search} = useSelector(filter)
+  const {page} = useSelector(filter)
 
   const getItems = async () => {
     const category = categoryIn
@@ -24,8 +25,9 @@ function App() {
     const sort = sortSelect.sort.replace('-', '')
     const type = typeIn
     const searchVal = search ? `&search=${search}` : ''
+    const pageVal = page
 
-    
+
 
     dispatch(fetchItems({
       sort,
@@ -33,15 +35,16 @@ function App() {
       category,
       type,
       searchVal,
+      pageVal,
     }))
   }
   useEffect(() => {
   
     getItems()
-  }, [categoryIn, sortSelect.sort, typeIn, search])
+  }, [categoryIn, sortSelect.sort, typeIn, search, page])
 
 
-  
+  console.log(page);
   return (
 
 <div className="App">

@@ -1,0 +1,36 @@
+.content {
+    
+    li {
+        display: inline-flex;
+        
+
+        &:global {
+            &.selected {
+                a {
+                    background-color: rgb(239, 127, 138);
+                    color: #fff;
+                }
+            }
+        }
+       
+        a {
+            
+            margin: 10px;
+            border: 1px solid rgb(239, 127, 138);
+            color: rgb(239, 127, 138);
+            border-radius: 50px;
+            width: 45px;
+            height: 45px;
+            text-align: center;
+            line-height: 45px;
+            cursor: pointer;
+            justify-content: center;
+
+            &:hover {
+                background-color: rgb(239, 127, 138);
+                color: #fff;
+            }    
+        }    
+    }  
+   
+}

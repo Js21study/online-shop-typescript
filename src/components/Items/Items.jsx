@@ -6,9 +6,10 @@ const Items = () => {
 
   
   const {items, status} = useSelector(state => state.item)
-  console.log(items);
+
   const isItemsLoading = (status === 'loading')
   return (
+    <>
     <div className="container grid">
       {isItemsLoading? [...Array(1)].map((i, index) => 
       <p key={index}>...Loading</p>) : 
@@ -16,8 +17,11 @@ const Items = () => {
       
       <Item key={i.id} title={i.title} price={i.price} types={i.types} imageUrl={i.imageUrl}/>)
       }
+      
         
     </div>
+    
+    </>
   )
 }
 

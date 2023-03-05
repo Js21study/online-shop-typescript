@@ -1,6 +1,8 @@
 import React from 'react'
 import Filter from '../../components/Filter'
 import Items from '../../components/Items/Items'
+import Pagination from '../../components/Paginations/Paginations'
+
 
 
 const Main = () => {
@@ -10,6 +12,7 @@ const Main = () => {
         
           <Filter/>
           <Items/>
+          <div className='container'><Pagination/></div>
       
       </div>
   )

@@ -27,9 +27,7 @@ const filters =  [{
   }]
 const state = ['всі товари', 'універсально', 'чоловіча', 'жіноча']
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+
 
 export default function Filter() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
@@ -37,7 +35,7 @@ export default function Filter() {
 
   const selectedSortObjSort = useSelector(sortSelectObjSort)
   const selectedType = useSelector(typeIndexSelect)
-  console.log(selectedType);
+
   
   return (
     <div className="bg-white">
