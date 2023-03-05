@@ -12,6 +12,7 @@ const initialState = {
     },
     typeIndex: 0,
     search: '',
+    page: 1,
 }
 
 export const filterSlice = createSlice({
