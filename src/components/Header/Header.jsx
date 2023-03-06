@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import Categories from '../Categories/Categories'
 import styles from './Header.module.css'
 import { FcLikePlaceholder } from "react-icons/fc"
@@ -9,15 +9,22 @@ import { RiShoppingBagLine } from "react-icons/ri";
 import { useDispatch, useSelector } from 'react-redux';
 import debounce from 'lodash.debounce'
 import { filter, setSearch } from '../../redux/slices/filterSlice';
+import { totalCountSelect, totalPriceSelect } from '../../redux/slices/cartSlice';
+import { AppContext } from '../../App';
 
 
 
 
 const Header = () => {
+  const {open, setOpen} = useContext(AppContext)
+
   const dispatch = useDispatch()
 
   const [valueOrdinary, setValueOrdinary] = useState('')
   const List = ['ALL', 'ASSESORIES', 'PARFUMS', 'HAIR']
+
+  const totalPrice = useSelector(totalPriceSelect)
+  const totalCount = useSelector(totalCountSelect)
 
   const updateSearchValue = useCallback(
     debounce((str) => {
@@ -53,15 +60,15 @@ const Header = () => {
           
         </div>
         
-        <div className={styles.cartButton}>
+        <div className={styles.cartButton} onClick={() => setOpen(!open)}>
         <div className={styles.flex}>
         
             <div className={styles.flex}>
-              <p>0 </p><span className={styles.icon}><RiShoppingBagLine/></span>
+              <p>{totalCount ? totalCount: 0} </p><span className={styles.icon}><RiShoppingBagLine/></span>
             </div>
             
             <div>
-              <p>0 ₴</p>
+              <p>{totalPrice} ₴</p>
             </div>
 
           </div>

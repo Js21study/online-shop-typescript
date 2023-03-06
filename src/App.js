@@ -5,12 +5,16 @@ import Header from './components/Header/Header';
 import Main from './pages/Main/Main';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './pages/NotFound/NotFound';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchItems } from './redux/slices/itemSlice';
 import './App.scss';
 import { categoryIndexSelect, filter, sortSelectObj, typeIndexSelect } from './redux/slices/filterSlice';
+import { createContext } from 'react';
+import Cart from './components/Cart/Cart';
 
+
+export const AppContext = createContext()
 function App() {
   const dispatch = useDispatch()
   const sortSelect = useSelector(sortSelectObj)
@@ -18,6 +22,8 @@ function App() {
   const typeIn = useSelector(typeIndexSelect)
   const {search} = useSelector(filter)
   const {page} = useSelector(filter)
+
+  const [open, setOpen] = useState(false)
 
   const getItems = async () => {
     const category = categoryIn
@@ -48,7 +54,9 @@ function App() {
   return (
 
 <div className="App">
+<AppContext.Provider value={{open, setOpen}}>
   <Header/>
+  <Cart/>
   <Routes>
  
   <Route path='/' element={<Main/>}/>
@@ -56,6 +64,7 @@ function App() {
 
   </Routes>
   <Footer/>
+  </AppContext.Provider>
 </div>
 
 

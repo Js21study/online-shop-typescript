@@ -15,7 +15,7 @@ const Items = () => {
       <p key={index}>...Loading</p>) : 
       items.map((i, index) => 
       
-      <Item key={i.id} title={i.title} price={i.price} types={i.types} imageUrl={i.imageUrl}/>)
+      <Item obj={i} key={i.id} title={i.title} price={i.price} types={i.types} imageUrl={i.imageUrl}/>)
       }
       
         
