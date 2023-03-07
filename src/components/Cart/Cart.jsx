@@ -36,7 +36,7 @@ export default function Cart() {
    const {open, setOpen} = useContext(AppContext)
 
   const itemsCart = useSelector(itemsCartSelect)
-  const totalCount = useSelector(totalCountSelect)
+
   const totalPrice = useSelector(totalPriceSelect)
 
   const dispatch = useDispatch()
@@ -103,7 +103,7 @@ export default function Cart() {
                                       <h3>
                                         <a href='/'>{product.title}</a>
                                       </h3>
-                                      <p className="ml-4">{product.price}₴</p>
+                                      <p className="ml-4">{product.price * product.count}₴</p>
                                     </div>
                                     <p className="mt-1 text-sm text-gray-500">{ListTypes[product.types]}</p>
                                   </div>
@@ -119,7 +119,7 @@ export default function Cart() {
                                       >
                                         -
                                       </button>
-                                     <span className='pr-4 text-4xl text-gray-500 '>{totalCount}</span> 
+                                     <span className='pr-4 text-4xl text-gray-500 '>{product.count}</span> 
                                       <button
                                         onClick={() => dispatch(addItem(product))}
                                         type="button"
