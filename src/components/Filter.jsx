@@ -38,7 +38,7 @@ export default function Filter() {
 
   
   return (
-    <div className="bg-white">
+
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -190,7 +190,7 @@ export default function Filter() {
           </section>
         </main>
       </div>
-    </div>
+
   )
 }
 

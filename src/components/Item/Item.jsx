@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { addItem } from '../../redux/slices/cartSlice'
+import './Item.scss';
 
 const ListTypes=['', 'універсально', 'для чоловіків', 'для жінок']
 const Item = ({obj, id, title, price, types, imageUrl}) => {

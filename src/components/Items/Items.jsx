@@ -10,7 +10,8 @@ const Items = () => {
   const isItemsLoading = (status === 'loading')
   return (
     <>
-    <div className="container grid">
+    <div className="container ">
+      <div className="grid">
       {isItemsLoading? [...Array(1)].map((i, index) => 
       <p key={index}>...Loading</p>) : 
       items.map((i, index) => 
@@ -18,6 +19,7 @@ const Items = () => {
       <Item obj={i} key={i.id} title={i.title} price={i.price} types={i.types} imageUrl={i.imageUrl}/>)
       }
       
+      </div>
         
     </div>
     

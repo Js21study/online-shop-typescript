@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const NotFound = () => {
   return (
-    <div className='container text-center'> Сторінка не знайдена! Перейти на <Link className='underline underline-offset-1' to='/' >головну</Link> </div>
+    <div className='box text-center'> Сторінка не знайдена! Перейти на <Link className='underline underline-offset-1' to='/' >головну</Link> </div>
   )
 }
 

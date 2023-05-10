@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { categoryIndexSelect, setCategoryIndex } from '../../redux/slices/filterSlice'
+import './Categories.scss';
 
 
 const Categories = ({category, index}) => {
