@@ -88,13 +88,13 @@ export default function Filter() {
 
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-200 pt-6 pb-6">
-            <h1 className="text-4xl tracking-tight text-gray-900">Products</h1>
+            <h1 className="text-1xl tracking-tight text-gray-900">   </h1>
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
                   <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                    Сортування по:
+                      Сортування по:
                     <ChevronDownIcon
                       className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
@@ -154,7 +154,7 @@ export default function Filter() {
 
             <div className="flex">
               {/* Filters */}
-              <form className="hidden lg:block">
+              <form >
                 
 
                 {filters.map((section) => (

@@ -1,23 +1,40 @@
 .header{
 background-color: rgb(247, 247, 248);
 border-bottom: 4px solid rgb(255, 255, 255);
-/* position: fixed;
-top: 0px;
-z-index: 142; */
-
-
 padding: 20px 15%;
+
 }
+
+@media screen and (max-width: 1200px) {
+    .header{
+        padding: 20px 5%;
+    }  
+}
+
+
 
 .flex{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    justify-items: center;
+    justify-items: center;    
 }
 
+@media screen and (max-width: 700px) {
+    .flex{
+        flex-direction: column;   
+    }  
+}
+
+
 .container{
-    margin: 20px 20%;
+    padding: 20px 20%;
+}
+
+@media screen and (max-width: 1200px) {
+    .container{
+        padding: 20px 5%;
+    }  
 }
 
 .icon{
@@ -36,6 +53,13 @@ padding: 20px 15%;
     border: 1px solid rgb(168, 168, 168);
     padding: 15px;
     border-radius: 20px;
+    
+}
+
+@media screen and (max-width: 700px) {
+    .input{
+        margin: 10px;   
+    }  
 }
 
 .input:focus{
@@ -54,3 +78,56 @@ padding: 20px 15%;
     transform: scale(1.1);
     background: rgb(0, 0, 0, 0.1);
 }
+
+
+.btn {
+    cursor: pointer;
+    }
+
+.menuCategory{
+
+    display: none;
+    
+}
+
+@media screen and (max-width: 700px) {
+    .menuCategory{
+        display: block;  
+        cursor: pointer;
+    }  
+}
+
+
+
+@media screen and (max-width: 700px) {
+    .maxCategory{
+        display: none;  
+    }  
+}
+@media screen and (min-width: 700px) {
+    .maxCategory{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        justify-items: center;    
+    }  
+}
+
+@media screen and (min-width: 700px) {
+    .minCategory{
+        display: none;
+    }  
+}
+
+@media screen and (max-width: 700px) {
+    .minCategory{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        justify-items: center;  
+        transition: all 6s ease;  
+    }  
+}
+
+    

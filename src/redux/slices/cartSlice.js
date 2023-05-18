@@ -1,12 +1,40 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
+export const calcTotalPrice = (items) => {
+  return items.reduce((sum, obj) => {
+      return (obj.price * obj.count) + sum
+    }, 0)
+}
 
+export const calcTotalCount = (items) => {
+  return items.reduce((sum, obj) => {
+  return obj.count + sum
+  }, 0)
+}
+
+
+
+export const getCartFromLocalStorage = () => {
+  const data = localStorage.getItem('cart')
+  const items = data ? JSON.parse(data) : []
+  const totalPrice = calcTotalPrice(items)
+  const totalCount = calcTotalCount(items)
+ 
+  return {
+          items,
+          totalPrice,
+          totalCount,
+      }
+  
+}
+
+const itemsCartLS = getCartFromLocalStorage()
 
 const initialState = {
-    totalPrice: 0,
-    items: [],
-    totalCount: 0,
+    totalPrice: itemsCartLS.totalPrice,
+    items: itemsCartLS.items,
+    totalCount: itemsCartLS.totalCount,
 }
 
 export const cartSlice = createSlice({

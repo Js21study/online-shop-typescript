@@ -4,6 +4,8 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, itemsCartSelect, minusItem, removeItem, totalCountSelect, totalPriceSelect } from '../../redux/slices/cartSlice'
 import { AppContext } from '../../App'
+import { useRef } from 'react'
+import { useEffect } from 'react'
 
 const ListTypes=['', 'універсально', 'для чоловіків', 'для жінок']
 export default function Cart() {
@@ -14,6 +16,17 @@ export default function Cart() {
   const totalPrice = useSelector(totalPriceSelect)
 
   const dispatch = useDispatch()
+
+  const isMounted = useRef(false)
+  
+  useEffect(() => {
+    if (isMounted.current) {
+      const jsonItems = JSON.stringify(itemsCart)
+      localStorage.setItem('cart', jsonItems)
+    }
+    isMounted.current = true
+    
+  }, [itemsCart])
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -61,7 +74,9 @@ export default function Cart() {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {itemsCart.map((product) => (
+                            {itemsCart.length < 1 ? <div className="flex justify-around mt-10 text-base font-medium text-gray-500">
+                              <p>You have not added any products yet!</p> </div>: 
+                            itemsCart.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img

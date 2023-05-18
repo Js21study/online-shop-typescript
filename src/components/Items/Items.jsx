@@ -5,12 +5,13 @@ import Item from '../Item/Item'
 const Items = () => {
 
   
+  
   const {items, status} = useSelector(state => state.item)
 
   const isItemsLoading = (status === 'loading')
   return (
     <>
-    <div className="container ">
+    <div>
       <div className="grid">
       {isItemsLoading? [...Array(1)].map((i, index) => 
       <p key={index}>...Loading</p>) : 

@@ -11,12 +11,15 @@ import debounce from 'lodash.debounce'
 import { filter, setSearch } from '../../redux/slices/filterSlice';
 import { totalCountSelect, totalPriceSelect } from '../../redux/slices/cartSlice';
 import { AppContext } from '../../App';
+import { XMarkIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom';
 
 
 
 
 const Header = () => {
   const {open, setOpen} = useContext(AppContext)
+  const [openCategory, setOpenCategory]= useState(false)
 
   const dispatch = useDispatch()
 
@@ -45,11 +48,11 @@ const Header = () => {
   return (
     <div className={styles.header}>
       <div className={styles.flex}>
-        <div className={styles.flex}> <img src={logo} alt="logo" /> <span> CREATOR</span></div>
+       <Link to="/"><div className={styles.flex}> <img src={logo} alt="logo" /> <span> CREATOR</span></div></Link>
         <div className={styles.flex}>
-        <span className={styles.icon}><RiPhoneFill/></span>
-        <span className={styles.icon}><FcLikePlaceholder/></span>
-        <span className={styles.icon}><RxPerson/></span>
+        <span className={styles.icon}><a href="tel:…"><RiPhoneFill/></a></span>
+        <Link className={styles.icon} to="/favorite"><FcLikePlaceholder/></Link>
+        {/* <span className={styles.icon}><RxPerson/></span> */}
         </div>
       </div>
 
@@ -76,10 +79,24 @@ const Header = () => {
       </div>
 
       <div className={styles.container}>
-      
+      <div className={styles.maxCategory}>{List.map((el, i) => <Categories key={el} category={el} index={i}/>)}</div>
+
       <div className={styles.flex}>
-        {List.map((el, i) => <Categories key={el} category={el} index={i}/>)}
-      </div>
+      {!openCategory?
+     
+     <div className={styles.menuCategory} onClick={() => setOpenCategory(true)}> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+   </svg>
+   </div>
+
+
+   : <>
+   <div className={styles.menuCategory} onClick={() => setOpenCategory(false)}><XMarkIcon className="h-6 w-6" aria-hidden="true" /></div>
+   <div className={styles.minCategory}>
+{List.map((el, i) => <Categories key={el} category={el} index={i}/>)}
+</div></>}
+</div>
+      
 
       </div>
     </div>

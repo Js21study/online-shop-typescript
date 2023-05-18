@@ -12,6 +12,8 @@ import './App.scss';
 import { categoryIndexSelect, filter, sortSelectObj, typeIndexSelect } from './redux/slices/filterSlice';
 import { createContext } from 'react';
 import Cart from './components/Cart/Cart';
+import Favorite from './pages/Favorite/Favorite';
+import FullItem from './pages/FullItem/FullItem';
 
 
 export const AppContext = createContext()
@@ -60,6 +62,8 @@ function App() {
   <Routes>
  
   <Route path='/' element={<Main/>}/>
+  <Route path='/product/:id' element={<FullItem/>}/>
+  <Route path='/favorite' element={<Favorite/>}/>
   <Route path='*' element={<NotFound/>}/>
 
   </Routes>

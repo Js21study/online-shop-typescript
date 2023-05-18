@@ -6,7 +6,11 @@
     border-radius: 20px;
     margin: 20px;
     cursor: pointer; 
-    transition: all 0.3s ease;
+    transition: all 0.8s ease;
+
+    @media screen and (max-width: 700px) {
+    margin-top: 15px;  
+  }
   
   
     &:hover{
@@ -19,3 +23,5 @@
     background: rgb(0, 0, 0, 0.1);
   
   }
+
+
