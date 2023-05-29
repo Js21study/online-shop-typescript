@@ -3,10 +3,11 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'
-import Item from '../../components/Item/Item';
+import Item, { ProductType } from '../../components/Item/Item';
 
 export default function FullItem() {
-    const [product, setProduct] = useState([])
+    const [product, setProduct] = useState<ProductType>()
+
     const {id} = useParams()
     const navigate = useNavigate()
     useEffect(() => {

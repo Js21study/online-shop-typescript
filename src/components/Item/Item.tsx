@@ -7,7 +7,28 @@ import { addFavItem, itemsFavSelect, removeFavItem } from '../../redux/slices/fa
 import { Link } from 'react-router-dom';
 
 const ListTypes=['', 'універсально', 'для чоловіків', 'для жінок']
-const Item = ({obj, title, price, types, imageUrl, favIs, full}) => {
+
+
+export type ProductType = {
+  id: string,
+  imageUrl: string, 
+  title: string, 
+  types: number, 
+  price: number, 
+  catgory: number, 
+  rating: number,
+}
+
+type ItemType = {
+  obj: ProductType,
+  title: string,  
+  price: number,  
+  types: number,  
+  imageUrl: string,  
+  favIs?: boolean, 
+  full?: boolean,
+}
+const Item: React.FC<ItemType> = ({obj, title, price, types, imageUrl, favIs, full}) => {
   const [favAdd, setFavAdd] = useState(false)
   const dispatch = useDispatch()
   const itemsFavArray = useSelector(itemsFavSelect)

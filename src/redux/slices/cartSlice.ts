@@ -1,39 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from '../store'
+import { itemsCartLS } from '../../counts'
 
 
-export const calcTotalPrice = (items) => {
-  return items.reduce((sum, obj) => {
-      return (obj.price * obj.count) + sum
-    }, 0)
+
+
+export type CartProductType = {
+  id: string,
+  imageUrl: string, 
+  title: string, 
+  types: number, 
+  price: number, 
+  catgory: number, 
+  rating: number,
+  count: number,
+
 }
 
-export const calcTotalCount = (items) => {
-  return items.reduce((sum, obj) => {
-  return obj.count + sum
-  }, 0)
+interface CartSliceStateInterface {
+    totalPrice: number,
+    items: CartProductType[],
+    totalCount: number,
 }
 
-
-
-export const getCartFromLocalStorage = () => {
-  const data = localStorage.getItem('cart')
-  const items = data ? JSON.parse(data) : []
-  const totalPrice = calcTotalPrice(items)
-  const totalCount = calcTotalCount(items)
- 
-  return {
-          items,
-          totalPrice,
-          totalCount,
-      }
-  
-}
-
-const itemsCartLS = getCartFromLocalStorage()
-
-const initialState = {
+const initialState: CartSliceStateInterface = {
     totalPrice: itemsCartLS.totalPrice,
-    items: itemsCartLS.items,
+    items: itemsCartLS.items ,
     totalCount: itemsCartLS.totalCount,
 }
 
@@ -103,9 +95,9 @@ export const cartSlice = createSlice({
 
 
 })
-export const totalPriceSelect = (state) => state.cart.totalPrice
-export const itemsCartSelect = (state) => state.cart.items
-export const totalCountSelect = (state) => state.cart.totalCount
+export const totalPriceSelect = (state: RootState) => state.cart.totalPrice
+export const itemsCartSelect = (state: RootState) => state.cart.items
+export const totalCountSelect = (state: RootState) => state.cart.totalCount
 
 // Action creators are generated for each case reducer function
 export const { addItem, minusItem, removeItem, clearItems } = cartSlice.actions

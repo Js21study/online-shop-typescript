@@ -28,8 +28,7 @@ const filters =  [{
 const state = ['всі товари', 'універсально', 'чоловіча', 'жіноча']
 
 
-
-export default function Filter() {
+ const Filter: React.FC  = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const dispatch = useDispatch()
 
@@ -138,7 +137,7 @@ export default function Filter() {
               
               <button
                 type="button"
-                className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
+                className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 hidden"
                 onClick={() => setMobileFiltersOpen(true)}
               >
                 <span className="sr-only">Filters</span>
@@ -182,10 +181,7 @@ export default function Filter() {
                     )}
                   </Disclosure>
                 ))}
-              </form>
-
-              {/* Product grid */}
-             
+              </form>             
             </div>
           </section>
         </main>
@@ -194,3 +190,5 @@ export default function Filter() {
   )
 }
 
+
+export default Filter;

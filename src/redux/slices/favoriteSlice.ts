@@ -1,19 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getFavoritesFromLS } from '../../counts'
+import { ProductType } from '../../components/Item/Item'
+import { RootState } from '../store'
 
 
-export const getFavoritesFromLS = () => {
-  const data = localStorage.getItem('favorite')
-  const itemsFavLS = data ? JSON.parse(data) : []
- 
- 
-  return {
-       itemsFavLS 
-      }
-  
-}
+
 
 const {itemsFavLS} = getFavoritesFromLS()
-const initialState = {
+
+
+
+interface FavoriteStateInterface {
+  items: ProductType[]
+}
+const initialState: FavoriteStateInterface = {
     
     items: itemsFavLS,
     
@@ -50,7 +50,7 @@ export const favoriteSlice = createSlice({
 
 })
 
-export const itemsFavSelect = (state) => state.favorite.items
+export const itemsFavSelect = (state: RootState) => state.favorite.items
 
 
 // Action creators are generated for each case reducer function

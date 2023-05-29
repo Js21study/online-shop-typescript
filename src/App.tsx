@@ -1,12 +1,11 @@
-
-
+import React, { useContext } from 'react'
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Main from './pages/Main/Main';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './pages/NotFound/NotFound';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { fetchItems } from './redux/slices/itemSlice';
 import './App.scss';
 import { categoryIndexSelect, filter, sortSelectObj, typeIndexSelect } from './redux/slices/filterSlice';
@@ -14,11 +13,21 @@ import { createContext } from 'react';
 import Cart from './components/Cart/Cart';
 import Favorite from './pages/Favorite/Favorite';
 import FullItem from './pages/FullItem/FullItem';
+import { useAppDispatch } from './redux/store';
 
+type AppContextType = {
+  open: boolean; 
+  setOpen: (e: boolean) => void;
+} 
 
-export const AppContext = createContext()
-function App() {
-  const dispatch = useDispatch()
+export const AppContext = createContext<AppContextType>({
+  open: false,
+  setOpen: () => {},
+  })
+
+export const GlobalAppContext = () => useContext(AppContext)
+const App:React.FC = () => {
+  const dispatch = useAppDispatch()
   const sortSelect = useSelector(sortSelectObj)
   const categoryIn = useSelector(categoryIndexSelect)
   const typeIn = useSelector(typeIndexSelect)
@@ -52,26 +61,24 @@ function App() {
   }, [categoryIn, sortSelect.sort, typeIn, search, page])
 
 
-  console.log(page);
   return (
 
-<div className="App">
-<AppContext.Provider value={{open, setOpen}}>
-  <Header/>
-  <Cart/>
-  <Routes>
- 
-  <Route path='/' element={<Main/>}/>
-  <Route path='/product/:id' element={<FullItem/>}/>
-  <Route path='/favorite' element={<Favorite/>}/>
-  <Route path='*' element={<NotFound/>}/>
 
-  </Routes>
-  <Footer/>
-  </AppContext.Provider>
-</div>
+    <div className="App">
+    <AppContext.Provider value={{open, setOpen}}>
+      <Header/>
+      <Cart/>
+      <Routes>
+    
+      <Route path='/' element={<Main/>}/>
+      <Route path='/product/:id' element={<FullItem/>}/>
+      <Route path='/favorite' element={<Favorite/>}/>
+      <Route path='*' element={<NotFound/>}/>
 
-
+      </Routes>
+      <Footer/>
+      </AppContext.Provider>
+    </div>
 
   );
 }

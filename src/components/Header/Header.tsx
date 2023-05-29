@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { ChangeEvent, useCallback, useContext, useState } from 'react'
 import Categories from '../Categories/Categories'
 import styles from './Header.module.css'
 import { FcLikePlaceholder } from "react-icons/fc"
@@ -7,18 +7,18 @@ import logo from '../../assets/img/logo.svg'
 import { RiPhoneFill } from "react-icons/ri";
 import { RiShoppingBagLine } from "react-icons/ri";
 import { useDispatch, useSelector } from 'react-redux';
-import debounce from 'lodash.debounce'
+import { debounce } from "lodash";
 import { filter, setSearch } from '../../redux/slices/filterSlice';
 import { totalCountSelect, totalPriceSelect } from '../../redux/slices/cartSlice';
-import { AppContext } from '../../App';
+import { GlobalAppContext } from '../../App';
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom';
 
 
 
 
-const Header = () => {
-  const {open, setOpen} = useContext(AppContext)
+const Header: React.FC = () => {
+  const {open, setOpen} = GlobalAppContext()
   const [openCategory, setOpenCategory]= useState(false)
 
   const dispatch = useDispatch()
@@ -37,7 +37,7 @@ const Header = () => {
   [],
   )
 
-  const onChangeInput = (e) => {
+  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setValueOrdinary(e.target.value)
     updateSearchValue(e.target.value)
   }

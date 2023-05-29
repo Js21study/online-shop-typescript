@@ -8,7 +8,7 @@ import { useRef } from 'react'
 import { useEffect } from 'react'
 
 const ListTypes=['', 'універсально', 'для чоловіків', 'для жінок']
-export default function Cart() {
+const Cart: React.FC = () => {
    const {open, setOpen} = useContext(AppContext)
 
   const itemsCart = useSelector(itemsCartSelect)
@@ -164,3 +164,5 @@ export default function Cart() {
     </Transition.Root>
   )
 }
+
+export default Cart

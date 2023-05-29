@@ -1,7 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { ProductType } from '../../components/Item/Item'
+import { RootState } from '../store'
 
-export const fetchItems = createAsyncThunk('item/fetchItems', async (params) => {
+type fetchItemsArg = {
+    sort: string,
+    order: "asc" | "desc"
+    category: number,
+    type: number,
+    searchVal: string,
+    pageVal: number,
+}
+
+export const fetchItems = createAsyncThunk<ProductType[] ,fetchItemsArg>('item/fetchItems', async (params) => {
   const {
     sort,
     order,
@@ -18,9 +29,21 @@ export const fetchItems = createAsyncThunk('item/fetchItems', async (params) => 
     return data
 })
 
-const initialState = {
+export enum Status {
+  LOADING = 'loading',
+  LOADED = 'loaded',
+  ERROR = 'error',
+}
+
+interface ItemSliceStateInterface {
+  items: ProductType[];
+  status: Status;
+
+}
+
+const initialState: ItemSliceStateInterface = {
     items: [],
-    status: 'loading'
+    status: Status.LOADING,
 }
 
 export const itemSlice = createSlice({
@@ -33,24 +56,27 @@ export const itemSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchItems.pending, (state) => {
       state.items = [];
-      state.status = 'loading';
+      state.status = Status.LOADING;
     })
 
     builder.addCase(fetchItems.fulfilled, (state, action) => {
 
       state.items = action.payload;
-      state.status = 'loaded';
+      state.status = Status.LOADED;
     })
 
 
     builder.addCase(fetchItems.rejected, (state) => {
       state.items = [];
-      state.status = 'error';
+      state.status = Status.ERROR;
     })
 }
 })
 
 // Action creators are generated for each case reducer function
 // export const {  } = itemSlice.actions
+
+export const ItemSliceSelectorItems = (state: RootState) => state.item.items
+export const ItemSliceSelectorStatus = (state: RootState) => state.item.status
 
 export default itemSlice.reducer

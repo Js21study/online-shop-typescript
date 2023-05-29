@@ -5,8 +5,8 @@ import Pagination from '../../components/Paginations/Paginations'
 
 
 
-const Main = () => {
-  const [open, setOpen] = useState(true)
+const Main:React.FC = () => {
+
   return (
     <div className='box'>
      

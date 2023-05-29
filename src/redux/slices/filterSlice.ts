@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from '../store';
 
 
 
@@ -44,11 +45,11 @@ export const filterSlice = createSlice({
 
 
 })
-export const categoryIndexSelect = (state) => state.filter.categoryIndex
-export const typeIndexSelect = (state) => state.filter.typeIndex
-export const sortSelectObj = (state) => state.filter.sortSelect
-export const filter = (state) => state.filter
-export const sortSelectObjSort = (state) => state.filter.sortSelect.sort
+export const categoryIndexSelect = (state: RootState) => state.filter.categoryIndex
+export const typeIndexSelect = (state: RootState) => state.filter.typeIndex
+export const sortSelectObj = (state: RootState) => state.filter.sortSelect
+export const filter = (state: RootState) => state.filter
+export const sortSelectObjSort = (state: RootState) => state.filter.sortSelect.sort
 // Action creators are generated for each case reducer function
 export const { setCategoryIndex, setSortSelect, setTypeIndex, setSearch, setPage } = filterSlice.actions
 

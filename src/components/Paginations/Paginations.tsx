@@ -6,11 +6,11 @@ import styles from './Pagination.module.scss'
 
 
 
-const Pagination = () => {
+const Pagination: React.FC = () => {
 
   const dispatch = useDispatch()
   const {page} = useSelector(filter)
-  const onChangePage = (e) => {
+  const onChangePage = (e: number) => {
     dispatch(setPage(e))
   }
 
